@@ -1,6 +1,10 @@
 # movie_recommender
  
-This project is based on a give dataset from an online movie streaming company which includes movie information, user IDs and user ratings. Aim of this project is to 
+This project is based on a give dataset from an online movie streaming company which includes movie information, user IDs and user ratings. 
+
+Source of data for this project is [Kaggle Movie Dataset](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset)
+
+Aim of this project is to 
 1) recommend top 5 popular movies for given genres, and 
 
 2) to recommend top 3 movies for 3 given user IDs. 

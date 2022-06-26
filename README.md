@@ -12,12 +12,12 @@ Aim of this project is to
 In tackling the first problem, a simple Weighted Rating Rank method is proposed. For the second problem, a collaborative filtering technique is chosen, in particular Probabilistic Matrix Factorization algorithm. Both methods are implemented in Python. 
 
 ## Dataset Introduction
-The given dataset for this project consists of 7 files in csv format. 
-In `movies_metadata`, the file contains basic information of `45,418` movies including `movie id`, `imdb ID`, `movie title`, `genre`, `budget`, `popularity score`, `average votes`, etc. 
-In `keywords`, the file allocates keywords to each movie id. 
-File `links` references corresponding movie ID, IMDB ID and TMBD ID for all movies, whereas file `links_small` extracts id information of 9,000 movies. 
-The `rating` file shows record of all movie ratings in range of 1-5 by each user ID at different time stamps. 
-In correspondence to the `links_small` file, the `ratings_small` file extracts ratings of 700 users for the 9,000 movies.
+The given dataset for this project consists of 7 files in csv format.   
+In `movies_metadata`, the file contains basic information of `45,418` movies including `movie id`, `imdb ID`, `movie title`, `genre`, `budget`, `popularity score`, `average votes`, etc.   
+In `keywords`, the file allocates keywords to each movie id.   
+File `links` references corresponding movie ID, IMDB ID and TMBD ID for all movies, whereas file `links_small` extracts id information of 9,000 movies.   
+The `rating` file shows record of all movie ratings in range of 1-5 by each user ID at different time stamps.   
+In correspondence to the `links_small` file, the `ratings_small` file extracts ratings of 700 users for the 9,000 movies.  
 
 ## Problem One: Top 5 Popular Movies by Genre
 ### 1.1 Assumptions 

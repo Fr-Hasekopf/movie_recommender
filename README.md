@@ -28,7 +28,7 @@ In this problem, we consider only the mainstream `MostPop`, as it provides simpl
 For this solution, a popularity recommender system using Bayesian Weighted Rank is considered. In the original IMBD genre movie ranking, similar algorithm is applied. Here we will construct a simple ranking process then compare with the original IMBD popularity ranking. Formula is as follows:
 
 
-![formula](https://render.githubusercontent.com/render/math?math=WR%20=%20\frac{v}{v+m}R%20+%20\frac{m}{v+m}C)
+<img src="https://render.githubusercontent.com/render/math?math=e^{i%20\pi}%20=%20-1">
 
 
 

@@ -40,19 +40,189 @@ The Bayesian Weighted Rank algorithm takes into consideration the comparability 
 In the WR algorithm, each movie will be allocated m number of votes with C scores, then the v*R/(v+m) will compensate movies which receive low vote counts and improves the given votes as in a more fair scenario.
 
 ### 1.3 Results
-The result is shown in (Fig 5) for top 5 movies in each genre, so that given a preferred genre, we could recommend the top movies for specific user. Examples include: 
+The result is shown in (Fig 5) for top 5 movies in each genre, so that given a preferred genre, we could recommend the top movies for specific user.   
+Examples include:   
 `Top 5 Animation movies are:['The Lion King', 'Spirited Away', "Howl's Moving Castle", 'Princess Mononoke', 'My Neighbor Totoro'] Top 5 Comedy movies are:['Dilwale Dulhania Le Jayenge', 'Forrest Gump', 'Back to the Future', 'The Intouchables', 'The Grand Budapest Hotel']`
 
 ## Problem Two: Movie Recommender
 ### 1.1 Assumptions and solution
 *(Sunilkumar, 2020)* summaries movie recommender systems based four methods, namely `content based filtering`, `collaborative filtering`, `hybrid method` and `deep learning` approach. Among them, `collaborative filtering` is considered advantageous in coping with data sparsity problems.  
-Here we also need to tackle with data sparsity. In the file `ratings`, we have identified that despite of a large movie dataset, ratings of certain movies are largely skewed, which would result in a sparse user-item matrix.    
+Here we also need to tackle with __data sparsity__. In the file `ratings`, we have identified that despite of a large movie dataset, ratings of certain movies are largely skewed, which would result in a sparse user-item matrix.    
 In this case, collaborative filtering methods could contribute to computation reduction. In particular, PMF __(Probabilistic Matrix Factorization)__ proves to be efficient and accurate for Dimensionality Reduction.   
   
-The PMF predicts item rating 𝑟̂𝑢𝑖 of a given user with the formular (1) , in addition, regularized squared error is minimized to estimate the unknown in formula (2). *(Salakhutdinov, 2007)(Hug, 2020a)*  
+The PMF predicts item rating 𝑟̂𝑢𝑖 of a given user with the formula (1) , in addition, regularized squared error is minimized to estimate the unknown in formula (2). *(Salakhutdinov, 2007)(Hug, 2020a)*  
 <p align="center">
   <img src="https://latex.codecogs.com/gif.latex?%5Chat%7Br%7D_%7Bui%7D%20%3D%20%5Cmu%20&plus;%20b_u%20&plus;%20b_i%20&plus;%20q_i%5ETp_u">
 </p>
+<p align="center">
+  <img src="https://latex.codecogs.com/gif.latex?%5Csum%5Cleft%28r_%7Bui%7D%20-%20%5Chat%7Br%7D_%7Bui%7D%20%5Cright%29%5E2%20&plus;%20%5Clambda%5Cleft%28b_i%5E2%20&plus;%20b_u%5E2%20&plus;%20%7C%7Cq_i%7C%7C%5E2%20&plus;%20%7C%7Cp_u%7C%7C%5E2%5Cright%29">
+</p>
+  
+Then stochastic gradient descent is applied in (3) – (6) to update the values.  
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <semantics>
+    <mtable columnalign="right left" rowspacing="3pt" columnspacing="0em" displaystyle="true">
+      <mtr>
+        <mtd>
+          <msub>
+            <mi>b</mi>
+            <mi>u</mi>
+          </msub>
+        </mtd>
+        <mtd>
+          <mi></mi>
+          <mo stretchy="false">&#x2190;<!-- ← --></mo>
+          <msub>
+            <mi>b</mi>
+            <mi>u</mi>
+          </msub>
+        </mtd>
+        <mtd>
+          <mo>+</mo>
+          <mi>&#x03B3;<!-- γ --></mi>
+          <mo stretchy="false">(</mo>
+          <msub>
+            <mi>e</mi>
+            <mrow class="MJX-TeXAtom-ORD">
+              <mi>u</mi>
+              <mi>i</mi>
+            </mrow>
+          </msub>
+          <mo>&#x2212;<!-- − --></mo>
+          <mi>&#x03BB;<!-- λ --></mi>
+          <msub>
+            <mi>b</mi>
+            <mi>u</mi>
+          </msub>
+          <mo stretchy="false">)</mo>
+        </mtd>
+      </mtr>
+      <mtr>
+        <mtd>
+          <msub>
+            <mi>b</mi>
+            <mi>i</mi>
+          </msub>
+        </mtd>
+        <mtd>
+          <mi></mi>
+          <mo stretchy="false">&#x2190;<!-- ← --></mo>
+          <msub>
+            <mi>b</mi>
+            <mi>i</mi>
+          </msub>
+        </mtd>
+        <mtd>
+          <mo>+</mo>
+          <mi>&#x03B3;<!-- γ --></mi>
+          <mo stretchy="false">(</mo>
+          <msub>
+            <mi>e</mi>
+            <mrow class="MJX-TeXAtom-ORD">
+              <mi>u</mi>
+              <mi>i</mi>
+            </mrow>
+          </msub>
+          <mo>&#x2212;<!-- − --></mo>
+          <mi>&#x03BB;<!-- λ --></mi>
+          <msub>
+            <mi>b</mi>
+            <mi>i</mi>
+          </msub>
+          <mo stretchy="false">)</mo>
+        </mtd>
+      </mtr>
+      <mtr>
+        <mtd>
+          <msub>
+            <mi>p</mi>
+            <mi>u</mi>
+          </msub>
+        </mtd>
+        <mtd>
+          <mi></mi>
+          <mo stretchy="false">&#x2190;<!-- ← --></mo>
+          <msub>
+            <mi>p</mi>
+            <mi>u</mi>
+          </msub>
+        </mtd>
+        <mtd>
+          <mo>+</mo>
+          <mi>&#x03B3;<!-- γ --></mi>
+          <mo stretchy="false">(</mo>
+          <msub>
+            <mi>e</mi>
+            <mrow class="MJX-TeXAtom-ORD">
+              <mi>u</mi>
+              <mi>i</mi>
+            </mrow>
+          </msub>
+          <mo>&#x22C5;<!-- ⋅ --></mo>
+          <msub>
+            <mi>q</mi>
+            <mi>i</mi>
+          </msub>
+          <mo>&#x2212;<!-- − --></mo>
+          <mi>&#x03BB;<!-- λ --></mi>
+          <msub>
+            <mi>p</mi>
+            <mi>u</mi>
+          </msub>
+          <mo stretchy="false">)</mo>
+        </mtd>
+      </mtr>
+      <mtr>
+        <mtd>
+          <msub>
+            <mi>q</mi>
+            <mi>i</mi>
+          </msub>
+        </mtd>
+        <mtd>
+          <mi></mi>
+          <mo stretchy="false">&#x2190;<!-- ← --></mo>
+          <msub>
+            <mi>q</mi>
+            <mi>i</mi>
+          </msub>
+        </mtd>
+        <mtd>
+          <mo>+</mo>
+          <mi>&#x03B3;<!-- γ --></mi>
+          <mo stretchy="false">(</mo>
+          <msub>
+            <mi>e</mi>
+            <mrow class="MJX-TeXAtom-ORD">
+              <mi>u</mi>
+              <mi>i</mi>
+            </mrow>
+          </msub>
+          <mo>&#x22C5;<!-- ⋅ --></mo>
+          <msub>
+            <mi>p</mi>
+            <mi>u</mi>
+          </msub>
+          <mo>&#x2212;<!-- − --></mo>
+          <mi>&#x03BB;<!-- λ --></mi>
+          <msub>
+            <mi>q</mi>
+            <mi>i</mi>
+          </msub>
+          <mo stretchy="false">)</mo>
+        </mtd>
+      </mtr>
+    </mtable>
+    <annotation encoding="application/x-tex">\begin{split}b_u &amp;\leftarrow b_u &amp;+ \gamma (e_{ui} - \lambda b_u)\\
+b_i &amp;\leftarrow b_i &amp;+ \gamma (e_{ui} - \lambda b_i)\\
+p_u &amp;\leftarrow p_u &amp;+ \gamma (e_{ui} \cdot q_i - \lambda p_u)\\
+q_i &amp;\leftarrow q_i &amp;+ \gamma (e_{ui} \cdot p_u - \lambda q_i)\end{split}</annotation>
+  </semantics>
+</math>
+
+
+
+
 
 
 

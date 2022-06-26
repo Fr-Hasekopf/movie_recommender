@@ -29,7 +29,7 @@ For this solution, a popularity recommender system using Bayesian Weighted Rank 
 
 
 <img src="https://render.githubusercontent.com/render/math?math=e^{i%20\pi}%20=%20-1">
-<img src="https://render.githubusercontent.com/render/math?math=WR=%20\frac{v}{v+m}R+\frac{m}{v+m}C">
+<img src="https://render.githubusercontent.com/render/math?math=WR=\frac{v}{v+m}R+\frac{m}{v+m}C">
 
 
 
